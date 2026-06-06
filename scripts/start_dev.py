@@ -83,6 +83,9 @@ def main():
         print("Activate your virtualenv first.")
         sys.exit(1)
 
+    if args.full:
+        run([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
+
     copy_env()
     ensure_secret_key()
     load_env()
@@ -91,9 +94,6 @@ def main():
     print("- Virtualenv must stay activated while running\n")
 
     # (BASE_DIR / "media" / "uploads").mkdir(parents=True, exist_ok=True)
-
-    if args.full:
-        run([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
 
     manage = [sys.executable, "manage.py"]
     apps = ["obywatele", "glosowania", "chat", "home", "bookkeeping", "board", "events", "tasks"]

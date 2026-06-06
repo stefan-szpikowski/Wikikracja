@@ -44,45 +44,26 @@ Try the live demo: **https://demo.wikikracja.pl/**
 - Python 3.14 (install from [python.org](https://www.python.org/downloads/) on Windows; add to PATH)
 - Redis server (for Django Channels and caching)
 - SMTP account (optional for development, required for production email functionality)
+- gettext
+- sqlite3
 
 #### Setup
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/soma115/wikikracja.git
    cd wikikracja
    ```
 
-2. **Create & activate virtual environment**
-   ```bash   
-   # Windows
-   py -3.14 -m venv .venv 
-   .venv\Scripts\activate 
+2. **Install dependencies**
+   - Python 3.14
+   - Redis server
+   - gettext
+   - sqlite3
 
-   # Linux / macOS
-   python -m venv .venv
-   source .venv/bin/activate 
-   ```
+3. **Start Redis server (required for Django Channels)**
 
-3. **Install dependencies (manual option)**
-   ```bash   
-   python -m pip install --upgrade pip
-   python -m pip install -r requirements.txt
-   ```
-
-4. **Configure environment**
-   ```bash
-   cp .env.example .env
-   # Edit .env with your settings (SECRET_KEY, email config, etc.)
-   ```
-
-5. **Initialize database and create superuser**
-   ```bash
-   python manage.py migrate
-   python manage.py createsuperuser
-   ```
-
-6. **Start Redis server** (required for Django Channels)
    ```bash
    # Linux/macOS
    redis-server
@@ -92,17 +73,47 @@ Try the live demo: **https://demo.wikikracja.pl/**
    # Or use Docker: docker run -p 6379:6379 redis:latest
    ```
 
-7. **Run development server**
+4. **Use script to install and run development server on Linux**
+
    ```bash
-   # Using helper script
-   python ./scripts/start_dev.py --full
-   
-   # Or manually
-   python manage.py runserver
+   # First installation, or after major changes
+   ./scripts/install_dev.sh
    ```
 
-8. **Access the application**
-   - Web: http://localhost:8000
+5. **Or install and run server manually**
+
+   ```bash
+   # Start python virtual environment
+   python -m venv .venv
+   source .venv/bin/activate
+
+   # Install pip
+   python -m pip install --upgrade pip
+   
+   # Install and run resver
+   python ./scripts/start_dev.py --full
+   ```
+
+6. **Access the application**
+   - Web: <http://localhost:8000>
+
+7. **Later, run server without installation using script on Linux**
+
+   ```bash
+   # Start server only
+   ./scripts/start_dev.sh
+   ```
+
+8. **Or run server manually**
+
+   ```bash
+   # Start python virtual environment
+   python -m venv .venv
+   source .venv/bin/activate
+   
+   # Run server
+   python ./scripts/start_dev.py
+   ```
 
 ### Docker Development
 

@@ -4,4 +4,6 @@
 python -m venv .venv
 source .venv/bin/activate
 
-python ./scripts/start_dev.py
+python -m pip install --upgrade pip
+
+python ./scripts/start_dev.py --full
